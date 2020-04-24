@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.69eda509.chunk.css",
-    "main.js": "/static/js/main.764a1a19.chunk.js",
-    "main.js.map": "/static/js/main.764a1a19.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.6356eff2.js",
-    "runtime-main.js.map": "/static/js/runtime-main.6356eff2.js.map",
-    "static/js/2.28ea1494.chunk.js": "/static/js/2.28ea1494.chunk.js",
-    "static/js/2.28ea1494.chunk.js.map": "/static/js/2.28ea1494.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.e7503e8d937353d1f5b1239f240b58f1.js": "/precache-manifest.e7503e8d937353d1f5b1239f240b58f1.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.69eda509.chunk.css.map": "/static/css/main.69eda509.chunk.css.map",
-    "static/js/2.28ea1494.chunk.js.LICENSE.txt": "/static/js/2.28ea1494.chunk.js.LICENSE.txt",
-    "static/media/bonecrack.wav": "/static/media/bonecrack.c37d9ccf.wav",
-    "static/media/fireworks.wav": "/static/media/fireworks.23af77c2.wav",
-    "static/media/footsteps.wav": "/static/media/footsteps.3497fc94.wav",
-    "static/media/windandchimes.wav": "/static/media/windandchimes.4a6e1b51.wav"
+    "main.css": "/vjam/static/css/main.69eda509.chunk.css",
+    "main.js": "/vjam/static/js/main.0be644a4.chunk.js",
+    "main.js.map": "/vjam/static/js/main.0be644a4.chunk.js.map",
+    "runtime-main.js": "/vjam/static/js/runtime-main.b3b45bdb.js",
+    "runtime-main.js.map": "/vjam/static/js/runtime-main.b3b45bdb.js.map",
+    "static/js/2.2911243a.chunk.js": "/vjam/static/js/2.2911243a.chunk.js",
+    "static/js/2.2911243a.chunk.js.map": "/vjam/static/js/2.2911243a.chunk.js.map",
+    "index.html": "/vjam/index.html",
+    "precache-manifest.12d93a4366e1c9d48bc66c0083920e76.js": "/vjam/precache-manifest.12d93a4366e1c9d48bc66c0083920e76.js",
+    "service-worker.js": "/vjam/service-worker.js",
+    "static/css/main.69eda509.chunk.css.map": "/vjam/static/css/main.69eda509.chunk.css.map",
+    "static/js/2.2911243a.chunk.js.LICENSE.txt": "/vjam/static/js/2.2911243a.chunk.js.LICENSE.txt",
+    "static/media/bonecrack.wav": "/vjam/static/media/bonecrack.c37d9ccf.wav",
+    "static/media/fireworks.wav": "/vjam/static/media/fireworks.23af77c2.wav",
+    "static/media/footsteps.wav": "/vjam/static/media/footsteps.3497fc94.wav",
+    "static/media/windandchimes.wav": "/vjam/static/media/windandchimes.4a6e1b51.wav"
   },
   "entrypoints": [
-    "static/js/runtime-main.6356eff2.js",
-    "static/js/2.28ea1494.chunk.js",
+    "static/js/runtime-main.b3b45bdb.js",
+    "static/js/2.2911243a.chunk.js",
     "static/css/main.69eda509.chunk.css",
-    "static/js/main.764a1a19.chunk.js"
+    "static/js/main.0be644a4.chunk.js"
   ]
 }

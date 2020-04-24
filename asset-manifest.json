@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/vjam/static/css/main.69eda509.chunk.css",
-    "main.js": "/vjam/static/js/main.bc6d8cf6.chunk.js",
-    "main.js.map": "/vjam/static/js/main.bc6d8cf6.chunk.js.map",
-    "runtime-main.js": "/vjam/static/js/runtime-main.b3b45bdb.js",
-    "runtime-main.js.map": "/vjam/static/js/runtime-main.b3b45bdb.js.map",
-    "static/js/2.991b4cf6.chunk.js": "/vjam/static/js/2.991b4cf6.chunk.js",
-    "static/js/2.991b4cf6.chunk.js.map": "/vjam/static/js/2.991b4cf6.chunk.js.map",
+    "main.css": "/vjam/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/vjam/static/js/main.e600110e.chunk.js",
+    "main.js.map": "/vjam/static/js/main.e600110e.chunk.js.map",
+    "runtime-main.js": "/vjam/static/js/runtime-main.773a7fc1.js",
+    "runtime-main.js.map": "/vjam/static/js/runtime-main.773a7fc1.js.map",
+    "static/js/2.52e3912e.chunk.js": "/vjam/static/js/2.52e3912e.chunk.js",
+    "static/js/2.52e3912e.chunk.js.map": "/vjam/static/js/2.52e3912e.chunk.js.map",
     "index.html": "/vjam/index.html",
-    "precache-manifest.6bd438c6cc5093eec67d05f78b321c61.js": "/vjam/precache-manifest.6bd438c6cc5093eec67d05f78b321c61.js",
+    "precache-manifest.7916d4d0024f1111e44fdaf81805c2da.js": "/vjam/precache-manifest.7916d4d0024f1111e44fdaf81805c2da.js",
     "service-worker.js": "/vjam/service-worker.js",
-    "static/css/main.69eda509.chunk.css.map": "/vjam/static/css/main.69eda509.chunk.css.map",
-    "static/js/2.991b4cf6.chunk.js.LICENSE.txt": "/vjam/static/js/2.991b4cf6.chunk.js.LICENSE.txt",
+    "static/css/main.5ecd60fb.chunk.css.map": "/vjam/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.52e3912e.chunk.js.LICENSE.txt": "/vjam/static/js/2.52e3912e.chunk.js.LICENSE.txt",
     "static/media/bonecrack.wav": "/vjam/static/media/bonecrack.c37d9ccf.wav",
     "static/media/fireworks.wav": "/vjam/static/media/fireworks.23af77c2.wav",
     "static/media/footsteps.wav": "/vjam/static/media/footsteps.3497fc94.wav",
     "static/media/windandchimes.wav": "/vjam/static/media/windandchimes.4a6e1b51.wav"
   },
   "entrypoints": [
-    "static/js/runtime-main.b3b45bdb.js",
-    "static/js/2.991b4cf6.chunk.js",
-    "static/css/main.69eda509.chunk.css",
-    "static/js/main.bc6d8cf6.chunk.js"
+    "static/js/runtime-main.773a7fc1.js",
+    "static/js/2.52e3912e.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.e600110e.chunk.js"
   ]
 }

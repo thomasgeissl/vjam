@@ -1,7 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 // import "./App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "./components/Home";
 import Lobby from "./components/Lobby";

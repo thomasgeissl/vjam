@@ -1,6 +1,7 @@
 {
   "name": "vjam",
   "version": "0.1.0",
+  "homepage": "https://thomasgeissl.github.io/vjam/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.11",

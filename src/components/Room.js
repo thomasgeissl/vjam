@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Juno from "./instruments/Juno";
 import Rhodes from "./instruments/Rhodes";
-import Sampler from "./instruments/Sampler";
+import MPC from "./instruments/MPC";
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -32,7 +32,7 @@ export default () => {
     if (id && !patched) {
       client.subscribe(`vjam/${id}`, function (err) {
         if (!err) {
-          console.log("subscribed");
+          console.log(`subscribed to vjam/${id}`);
         }
       });
       client.subscribe(`vjam/${id}/users/#`, function (err) {
@@ -51,7 +51,6 @@ export default () => {
         }
         if (topic === `vjam/${id}/users/get`) {
           const data = JSON.parse(message.toString());
-          console.log("get users from", data);
           if (data.id !== client.options.clientId) {
             client.publish(
               `vjam/${id}/users/set`,
@@ -60,7 +59,6 @@ export default () => {
           }
         }
         if (topic === `vjam/${id}/users/set`) {
-          console.log("set users");
           const data = JSON.parse(message.toString());
           store.dispatch(setUsers(data));
         }
@@ -100,7 +98,6 @@ export default () => {
                       `vjam/${id}`,
                       JSON.stringify(addUser(requestedName))
                     );
-                    console.log("setname action", setName(requestedName));
                     dispatch(setName(requestedName));
                   }
                 }}
@@ -132,6 +129,7 @@ export default () => {
           <Grid container spacing={3}>
             <Juno prefix={`vjam/${id}`}></Juno>
             <Rhodes prefix={`vjam/${id}`}></Rhodes>
+            <MPC prefix={`vjam/${id}`}></MPC>
             {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
           </Grid>
         </>

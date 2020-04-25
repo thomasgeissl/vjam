@@ -6,12 +6,14 @@ const types = {
 const instruments = {
   JUNO: "JUNO",
   RHODES: "RHODES",
+  MPC: "MPC",
 };
 
 const defaultState = {
   instruments: {
     JUNO: { user: "", note: null, velocity: 0 },
     RHODES: { user: "", note: null, velocity: 0 },
+    MPC: { user: "", note: null, velocity: 0 },
   },
 };
 

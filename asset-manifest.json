@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/vjam/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/vjam/static/js/main.9ab85d14.chunk.js",
-    "main.js.map": "/vjam/static/js/main.9ab85d14.chunk.js.map",
+    "main.js": "/vjam/static/js/main.e9ab982f.chunk.js",
+    "main.js.map": "/vjam/static/js/main.e9ab982f.chunk.js.map",
     "runtime-main.js": "/vjam/static/js/runtime-main.773a7fc1.js",
     "runtime-main.js.map": "/vjam/static/js/runtime-main.773a7fc1.js.map",
     "static/js/2.8a61229f.chunk.js": "/vjam/static/js/2.8a61229f.chunk.js",
     "static/js/2.8a61229f.chunk.js.map": "/vjam/static/js/2.8a61229f.chunk.js.map",
     "index.html": "/vjam/index.html",
-    "precache-manifest.a61db52de7f3b1e03748f860fed0007d.js": "/vjam/precache-manifest.a61db52de7f3b1e03748f860fed0007d.js",
+    "precache-manifest.2b14c91c0ccd6061a6381af74d2c8f77.js": "/vjam/precache-manifest.2b14c91c0ccd6061a6381af74d2c8f77.js",
     "service-worker.js": "/vjam/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/vjam/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.8a61229f.chunk.js.LICENSE.txt": "/vjam/static/js/2.8a61229f.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.773a7fc1.js",
     "static/js/2.8a61229f.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.9ab85d14.chunk.js"
+    "static/js/main.e9ab982f.chunk.js"
   ]
 }

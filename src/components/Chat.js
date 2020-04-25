@@ -33,6 +33,7 @@ export default ({ prefix }) => {
         onKeyPress={(event) => {
           if (event.key === "Enter") {
             client.publish(prefix, JSON.stringify(addMessage(name, text)));
+            setText("");
           }
         }}
       ></TextField>

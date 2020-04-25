@@ -9,11 +9,11 @@ import { addMessage } from "../store/reducers/chat";
 import store from "../store";
 
 const Container = styled.div`
-  width: 100%;
+  background-color: lightcoral;
+  padding: 25px;
 `;
 const History = styled.ul`
   height: 100px;
-  background-color: lightcoral;
   overflow-y: scroll;
 `;
 const Intro = styled.section``;
@@ -48,10 +48,21 @@ export default ({ prefix }) => {
   return (
     <Container>
       <TextField
+        fullWidth
         value={text}
+        fullWidth
+        placeholder={"something nice you wanna say to your friends"}
         onChange={(event) => setText(event.target.value)}
+        onKeyPress={(event) => {
+          if (event.key === "Enter") {
+            client.publish(
+              prefix,
+              JSON.stringify(addMessage("TODO: name", text))
+            );
+          }
+        }}
       ></TextField>
-      <Button
+      {/* <Button
         onClick={() => {
           client.publish(
             prefix,
@@ -60,7 +71,7 @@ export default ({ prefix }) => {
         }}
       >
         send
-      </Button>
+      </Button> */}
       <History>
         {messages.map((message, index) => {
           return (

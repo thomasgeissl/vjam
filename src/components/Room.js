@@ -4,6 +4,8 @@ import Juno from "./instruments/Juno";
 import Rhodes from "./instruments/Rhodes";
 import Sampler from "./instruments/Sampler";
 
+import Grid from "@material-ui/core/Grid";
+
 import Chat from "./Chat";
 
 import store from "../store";
@@ -36,10 +38,18 @@ export default () => {
   });
   return (
     <>
-      <Chat prefix={`vjam/${id}/chat`}></Chat>
-      <Juno prefix={`vjam/${id}`}></Juno>
-      <Rhodes prefix={`vjam/${id}`}></Rhodes>
-      {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
+      <Grid container>
+        <Grid item xs={12}>
+          <Chat prefix={`vjam/${id}/chat`}></Chat>
+        </Grid>
+      </Grid>
+
+      <h2>Instruments</h2>
+      <Grid container spacing={3}>
+        <Juno prefix={`vjam/${id}`}></Juno>
+        <Rhodes prefix={`vjam/${id}`}></Rhodes>
+        {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
+      </Grid>
     </>
   );
 };

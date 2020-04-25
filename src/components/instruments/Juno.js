@@ -15,7 +15,7 @@ import styled from "styled-components";
 const Input = styled.div`
   width: 100%;
   height: 100%;
-  background-color: blue;
+  background-color: lightskyblue;
 `;
 
 function map_range(value, low1, high1, low2, high2) {

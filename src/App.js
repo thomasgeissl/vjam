@@ -1,18 +1,22 @@
 import React from "react";
 import { Provider } from "react-redux";
-// import "./App.css";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 
 import Home from "./components/Home";
-import Lobby from "./components/Lobby";
 import Room from "./components/Room";
 
 import store from "./store";
 
+const Container = styled.div`
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
+    <Container>
+      <Provider store={store}>
         <Router>
           <Switch>
             <Route path="/rooms/:id">
@@ -23,8 +27,8 @@ function App() {
             </Route>
           </Switch>
         </Router>
-      </div>
-    </Provider>
+      </Provider>
+    </Container>
   );
 }
 

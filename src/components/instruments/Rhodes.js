@@ -47,6 +47,11 @@ export default ({ prefix }) => {
   const velocity = useSelector(
     (state) => state.band.instruments.RHODES.velocity
   );
+  const user = useSelector((state) => state.band.instruments.RHODES.user);
+  const name = useSelector((state) => state.system.name);
+  const isActiveUser = () => {
+    return user === name;
+  };
 
   useEffect(() => {
     if (!patched) {
@@ -84,9 +89,10 @@ export default ({ prefix }) => {
   });
 
   return (
-    <Wrapper>
+    <Wrapper type={"RHODES"} user={user}>
       <Input
         onMouseDown={(event) => {
+          if (!isActiveUser()) return;
           setMouseDown(true);
           const x =
             (event.clientX - event.target.getBoundingClientRect().left) /
@@ -103,6 +109,7 @@ export default ({ prefix }) => {
           );
         }}
         onMouseMove={(event) => {
+          if (!isActiveUser()) return;
           if (mouseDown) {
             const x =
               (event.clientX - event.target.getBoundingClientRect().left) /
@@ -124,6 +131,7 @@ export default ({ prefix }) => {
           }
         }}
         onMouseUp={(event) => {
+          if (!isActiveUser()) return;
           setMouseDown(false);
           client.publish(
             prefix,

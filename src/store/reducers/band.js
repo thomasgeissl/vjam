@@ -1,6 +1,7 @@
 const types = {
   TRIGGERATTACK: "TRIGGERATTACK",
   TRIGGERRELEASE: "TRIGGERRELEASE",
+  SETUSER: "SETUSER",
 };
 const instruments = {
   JUNO: "JUNO",
@@ -9,8 +10,8 @@ const instruments = {
 
 const defaultState = {
   instruments: {
-    JUNO: { note: null, velocity: 0 },
-    RHODES: { note: null, velocity: 0 },
+    JUNO: { user: "", note: null, velocity: 0 },
+    RHODES: { user: "", note: null, velocity: 0 },
   },
 };
 
@@ -22,7 +23,7 @@ export default (state = defaultState, action) => {
         action.payload.note;
       newState.instruments[action.payload.instrument].velocity =
         action.payload.velocity;
-      return newState;
+      return { ...newState };
     }
     case types.TRIGGERRELEASE: {
       let newState = { ...state };
@@ -30,11 +31,36 @@ export default (state = defaultState, action) => {
       newState.instruments[action.payload.instrument].velocity = 0;
       return { ...newState };
     }
+    case types.SETUSER: {
+      let newState = { ...state };
+      Object.keys(newState.instruments).forEach((key) => {
+        if (newState.instruments[key].user === action.payload.user) {
+          newState.instruments[key].user = "";
+        }
+      });
+      if (action.payload.instrument !== "NONE") {
+        newState.instruments[action.payload.instrument].user =
+          action.payload.user;
+      }
+
+      return { ...newState };
+    }
     default:
       return state;
   }
 };
 
+export const getChoosenInstrument = (user) => {
+  return (state) => {
+    let instrument = "NONE";
+    Object.keys(state.band.instruments).forEach((key) => {
+      if (state.band.instruments[key].user === user) {
+        instrument = key;
+      }
+    });
+    return instrument;
+  };
+};
 export const triggerAttack = (instrument, note, velocity) => {
   return {
     type: types.TRIGGERATTACK,
@@ -50,6 +76,15 @@ export const triggerRelease = (instrument) => {
     type: types.TRIGGERRELEASE,
     payload: {
       instrument,
+    },
+  };
+};
+export const setUser = (instrument, user) => {
+  return {
+    type: types.SETUSER,
+    payload: {
+      instrument,
+      user,
     },
   };
 };

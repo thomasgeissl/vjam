@@ -13,9 +13,11 @@ import { setUsers, addUser, setName } from "../store/reducers/system";
 
 import UserList from "./UserList";
 import Chat from "./Chat";
+import InstrumentChooser from "./InstrumentChooser";
 
 import store from "../store";
 import client from "../mqtt";
+import { types } from "../store/reducers/chat";
 
 const Intro = styled.div`
   margin-top: 128px;
@@ -120,6 +122,13 @@ export default () => {
           </Grid>
 
           <h2>Instruments</h2>
+          <p>
+            Instrumentes are controlled via the 2d pad, where the x axis is
+            mapped to the pitch and the y axis to the velocity. More instruments
+            and controllable effect parameters, as well as better interactions,
+            will hopefully follow soon.
+          </p>
+          <InstrumentChooser prefix={`vjam/${id}`}></InstrumentChooser>
           <Grid container spacing={3}>
             <Juno prefix={`vjam/${id}`}></Juno>
             <Rhodes prefix={`vjam/${id}`}></Rhodes>

@@ -20,30 +20,7 @@ const Intro = styled.section``;
 export default ({ prefix }) => {
   const [text, setText] = useState("");
   const messages = useSelector((state) => state.chat.messages);
-
-  const [patched, setPatched] = useState(false);
-  useEffect(() => {
-    if (!patched) {
-      // client.on("connect", function () {
-      client.subscribe(prefix, function (err) {
-        if (!err) {
-          console.log("subscribed");
-        }
-      });
-
-      client.on("message", function (topic, message) {
-        if (topic === prefix) {
-          let action;
-          try {
-            action = JSON.parse(message.toString());
-            store.dispatch(action);
-          } catch (e) {}
-        }
-      });
-
-      setPatched(true);
-    }
-  });
+  const name = useSelector((state) => state.system.name);
 
   return (
     <Container>
@@ -55,10 +32,7 @@ export default ({ prefix }) => {
         onChange={(event) => setText(event.target.value)}
         onKeyPress={(event) => {
           if (event.key === "Enter") {
-            client.publish(
-              prefix,
-              JSON.stringify(addMessage("TODO: name", text))
-            );
+            client.publish(prefix, JSON.stringify(addMessage(name, text)));
           }
         }}
       ></TextField>

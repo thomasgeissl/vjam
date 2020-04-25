@@ -1,55 +1,64 @@
 const types = {
-  SETTEMPERATURE: "SETTEMPERATURE",
-  SETCURRENT: "SETCURRENT",
-  SETPROGRAM: "SETPROGRAM",
+  ADDUSER: "ADDUSER",
+  SETUSERS: "SETUSERS",
+  SETNAME: "SETNAME",
 };
 
-const defaultState = {};
+const defaultState = {
+  name: "", //current user name
+  users: [], //all users
+};
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case types.SETTEMPERATURE: {
+    case types.SETUSERS: {
       return {
         ...state,
-        temperature: action.payload.value,
+        users: action.payload.value,
       };
     }
-    case types.SETCURRENT: {
+    case types.ADDUSER: {
+      let users = [...state.users];
+      if (!users.includes(action.payload.value)) {
+        users.push(action.payload.value);
+      }
       return {
         ...state,
-        current: action.payload.value,
+        users,
       };
     }
-    case types.SETPROGRAM: {
-      return {
-        ...state,
-        program: action.payload.value,
-      };
+    case types.SETNAME: {
+      if (!state.users.includes(action.payload.value)) {
+        return {
+          ...state,
+          name: action.payload.value,
+        };
+      }
     }
     default:
       return state;
   }
 };
 
-export const setTemperature = (value) => {
+export const setUsers = (value) => {
   return {
-    type: types.SETTEMPERATURE,
+    type: types.SETUSERS,
     payload: {
       value,
     },
   };
 };
-export const setCurrent = (value) => {
+export const addUser = (value) => {
   return {
-    type: types.SETCURRENT,
+    type: types.ADDUSER,
     payload: {
       value,
     },
   };
 };
-export const setProgram = (value) => {
+export const setName = (value) => {
   return {
-    type: types.SETPROGRAM,
+    type: types.SETNAME,
     payload: {
       value,
     },

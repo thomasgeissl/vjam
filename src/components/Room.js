@@ -1,27 +1,43 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 import Juno from "./instruments/Juno";
 import Rhodes from "./instruments/Rhodes";
 import Sampler from "./instruments/Sampler";
 
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 
+import { setUsers, addUser, setName } from "../store/reducers/system";
+
+import UserList from "./UserList";
 import Chat from "./Chat";
 
 import store from "../store";
 import client from "../mqtt";
+
+const Intro = styled.div`
+  margin-top: 128px;
+`;
 export default () => {
   const { id } = useParams();
   const [patched, setPatched] = useState(false);
+  const [requestedName, setRequestedName] = useState("");
+  const name = useSelector((state) => state.system.name);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (id && !patched) {
-      // client.on("connect", function () {
       client.subscribe(`vjam/${id}`, function (err) {
         if (!err) {
           console.log("subscribed");
         }
       });
-      // });
+      client.subscribe(`vjam/${id}/users/#`, function (err) {
+        if (!err) {
+          console.log(`subscribed to vjam/${id}/users/#`);
+        }
+      });
 
       client.on("message", function (topic, message) {
         if (topic === `vjam/${id}`) {
@@ -31,25 +47,86 @@ export default () => {
             store.dispatch(action);
           } catch (e) {}
         }
+        if (topic === `vjam/${id}/users/get`) {
+          const data = JSON.parse(message.toString());
+          console.log("get users from", data);
+          if (data.id !== client.options.clientId) {
+            client.publish(
+              `vjam/${id}/users/set`,
+              JSON.stringify(store.getState().system.users)
+            );
+          }
+        }
+        if (topic === `vjam/${id}/users/set`) {
+          console.log("set users");
+          const data = JSON.parse(message.toString());
+          store.dispatch(setUsers(data));
+        }
       });
 
       setPatched(true);
+      client.publish(
+        `vjam/${id}/users/get`,
+        JSON.stringify({ id: client.options.clientId })
+      );
     }
   });
   return (
     <>
-      <Grid container>
-        <Grid item xs={12}>
-          <Chat prefix={`vjam/${id}/chat`}></Chat>
-        </Grid>
-      </Grid>
+      {name === "" && (
+        <Intro>
+          <Grid container>
+            <Grid item xs={2} sm={3}></Grid>
+            <Grid item xs={8} sm={6}>
+              Please let the others know your name. If it is not yet taken, then
+              you will automatically enter the jam session. Submit by pressing
+              return. There will be a button later, do not worry.
+            </Grid>
+            <Grid item xs={2} sm={3}></Grid>
 
-      <h2>Instruments</h2>
-      <Grid container spacing={3}>
-        <Juno prefix={`vjam/${id}`}></Juno>
-        <Rhodes prefix={`vjam/${id}`}></Rhodes>
-        {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
-      </Grid>
+            <Grid item xs={2} sm={3}></Grid>
+            <Grid item xs={8} sm={6}>
+              <TextField
+                fullWidth
+                value={requestedName}
+                onChange={(event) => {
+                  setRequestedName(event.target.value);
+                }}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    client.publish(
+                      `vjam/${id}`,
+                      JSON.stringify(addUser(requestedName))
+                    );
+                    console.log("setname action", setName(requestedName));
+                    dispatch(setName(requestedName));
+                  }
+                }}
+              ></TextField>
+            </Grid>
+          </Grid>
+        </Intro>
+      )}
+
+      {name !== "" && (
+        <>
+          <Grid container>
+            <Grid item xs={12}>
+              <UserList></UserList>
+            </Grid>
+            <Grid item xs={12}>
+              <Chat prefix={`vjam/${id}`}></Chat>
+            </Grid>
+          </Grid>
+
+          <h2>Instruments</h2>
+          <Grid container spacing={3}>
+            <Juno prefix={`vjam/${id}`}></Juno>
+            <Rhodes prefix={`vjam/${id}`}></Rhodes>
+            {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
+          </Grid>
+        </>
+      )}
     </>
   );
 };

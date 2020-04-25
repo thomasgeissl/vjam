@@ -72,6 +72,7 @@ export default ({ prefix }) => {
         C4,
         F4,
       });
+      inst.volume.value = -6;
       const reverb = new Freeverb(0.6, 5000);
       const pingPongDelay = new PingPongDelay({
         delayTime: "32n",
@@ -86,7 +87,8 @@ export default ({ prefix }) => {
     }
     if (instrument) {
       if (note) {
-        // instrument.triggerAttack("C3", 0, velocity);
+        // TODO: check why this is not working
+        // instrument.triggerAttack(note, 0, velocity);
         instrument.triggerAttack(note);
       } else {
         instrument.triggerRelease();

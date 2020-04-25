@@ -4,6 +4,8 @@ import Juno from "./instruments/Juno";
 import Rhodes from "./instruments/Rhodes";
 import Sampler from "./instruments/Sampler";
 
+import Chat from "./Chat";
+
 import store from "../store";
 import client from "../mqtt";
 export default () => {
@@ -34,6 +36,7 @@ export default () => {
   });
   return (
     <>
+      <Chat prefix={`vjam/${id}/chat`}></Chat>
       <Juno prefix={`vjam/${id}`}></Juno>
       <Rhodes prefix={`vjam/${id}`}></Rhodes>
       {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}

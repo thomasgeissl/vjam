@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 
 import system from "./system";
 import band from "./band";
+import chat from "./chat";
 
 const appReducer = combineReducers({
   system,
   band,
+  chat,
 });
 
 export default (state, action) => {

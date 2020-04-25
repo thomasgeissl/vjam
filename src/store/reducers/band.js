@@ -7,6 +7,7 @@ const instruments = {
   JUNO: "JUNO",
   RHODES: "RHODES",
   MPC: "MPC",
+  STEELDRUM: "STEELDRUM",
 };
 
 const defaultState = {
@@ -14,6 +15,7 @@ const defaultState = {
     JUNO: { user: "", note: null, velocity: 0 },
     RHODES: { user: "", note: null, velocity: 0 },
     MPC: { user: "", note: null, velocity: 0 },
+    STEELDRUM: { user: "", note: null, velocity: 0 },
   },
 };
 
@@ -61,6 +63,21 @@ export const getChoosenInstrument = (user) => {
       }
     });
     return instrument;
+  };
+};
+export const getNote = (type) => {
+  return (state) => {
+    return state.band.instruments[type].note;
+  };
+};
+export const getVelocity = (type) => {
+  return (state) => {
+    return state.band.instruments[type].velocity;
+  };
+};
+export const getUser = (type) => {
+  return (state) => {
+    return state.band.instruments[type].user;
   };
 };
 export const triggerAttack = (instrument, note, velocity) => {

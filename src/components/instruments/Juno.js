@@ -8,6 +8,9 @@ import {
   instruments,
   triggerAttack,
   triggerRelease,
+  getNote,
+  getVelocity,
+  getUser,
 } from "../../store/reducers/band";
 
 import styled from "styled-components";
@@ -39,13 +42,13 @@ const scale = [
   "B4",
 ];
 
-export default ({ prefix }) => {
+export default ({ type, prefix }) => {
   const [patched, setPatched] = useState(false);
   const [instrument, setInstrument] = useState(null);
   const [mouseDown, setMouseDown] = useState(false);
-  const note = useSelector((state) => state.band.instruments.JUNO.note);
-  const velocity = useSelector((state) => state.band.instruments.JUNO.velocity);
-  const user = useSelector((state) => state.band.instruments.JUNO.user);
+  const note = useSelector(getNote(type));
+  const velocity = useSelector(getVelocity(type));
+  const user = useSelector(getUser(type));
   const name = useSelector((state) => state.system.name);
 
   const isActiveUser = () => {
@@ -87,7 +90,7 @@ export default ({ prefix }) => {
   });
 
   return (
-    <Wrapper type={"JUNO"} user={user}>
+    <Wrapper type={type} user={user}>
       <Input
         onMouseDown={(event) => {
           if (!isActiveUser()) return;
@@ -103,7 +106,7 @@ export default ({ prefix }) => {
           const n = scale[Math.floor(x * scale.length)];
           client.publish(
             prefix,
-            JSON.stringify(triggerAttack(instruments.JUNO, n, y / 2 + 0.5))
+            JSON.stringify(triggerAttack(type, n, y / 2 + 0.5))
           );
         }}
         onMouseMove={(event) => {
@@ -120,7 +123,7 @@ export default ({ prefix }) => {
               prefix,
               JSON.stringify(
                 triggerAttack(
-                  instruments.JUNO,
+                  type,
                   scale[Math.floor(x * scale.length)],
                   y / 2 + 0.5
                 )
@@ -131,10 +134,7 @@ export default ({ prefix }) => {
         onMouseUp={(event) => {
           if (!isActiveUser()) return;
           setMouseDown(false);
-          client.publish(
-            prefix,
-            JSON.stringify(triggerRelease(instruments.JUNO))
-          );
+          client.publish(prefix, JSON.stringify(triggerRelease(type)));
         }}
       ></Input>
     </Wrapper>

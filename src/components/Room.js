@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Juno from "./instruments/Juno";
 import Rhodes from "./instruments/Rhodes";
 import MPC from "./instruments/MPC";
+import Sampler from "./instruments/Sampler";
 
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -16,8 +17,14 @@ import Chat from "./Chat";
 import InstrumentChooser from "./InstrumentChooser";
 
 import store from "../store";
+import { instruments } from "../store/reducers/band";
 import client from "../mqtt";
-import { types } from "../store/reducers/chat";
+
+import cello_C2 from "../assets/samples/Kawai-K5000W-Cello-C2.wav";
+import steeldrum_C4 from "../assets/samples/Roland-GR-1-Steel-Drum-C4.wav";
+const celloSamples = {
+  C4: steeldrum_C4,
+};
 
 const Intro = styled.div`
   margin-top: 128px;
@@ -127,10 +134,14 @@ export default () => {
           </p>
           <InstrumentChooser prefix={`vjam/${id}`}></InstrumentChooser>
           <Grid container spacing={3}>
-            <Juno prefix={`vjam/${id}`}></Juno>
-            <Rhodes prefix={`vjam/${id}`}></Rhodes>
-            <MPC prefix={`vjam/${id}`}></MPC>
-            {/* <Sampler prefix={`vjam/${id}`}></Sampler> */}
+            <Juno type={instruments.JUNO} prefix={`vjam/${id}`}></Juno>
+            <Rhodes type={instruments.RHODES} prefix={`vjam/${id}`}></Rhodes>
+            <MPC type={instruments.MPC} prefix={`vjam/${id}`}></MPC>
+            <Sampler
+              type={instruments.STEELDRUM}
+              samples={celloSamples}
+              prefix={`vjam/${id}`}
+            ></Sampler>
           </Grid>
         </>
       )}

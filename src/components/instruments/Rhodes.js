@@ -8,6 +8,9 @@ import {
   instruments,
   triggerAttack,
   triggerRelease,
+  getNote,
+  getVelocity,
+  getUser,
 } from "../../store/reducers/band";
 
 import styled from "styled-components";
@@ -39,15 +42,13 @@ const scale = [
   "B4",
 ];
 
-export default ({ prefix }) => {
+export default ({ type, prefix }) => {
   const [patched, setPatched] = useState(false);
   const [instrument, setInstrument] = useState(null);
   const [mouseDown, setMouseDown] = useState(false);
-  const note = useSelector((state) => state.band.instruments.RHODES.note);
-  const velocity = useSelector(
-    (state) => state.band.instruments.RHODES.velocity
-  );
-  const user = useSelector((state) => state.band.instruments.RHODES.user);
+  const note = useSelector(getNote(type));
+  const velocity = useSelector(getVelocity(type));
+  const user = useSelector(getUser(type));
   const name = useSelector((state) => state.system.name);
   const isActiveUser = () => {
     return user === name;
@@ -89,7 +90,7 @@ export default ({ prefix }) => {
   });
 
   return (
-    <Wrapper type={"RHODES"} user={user}>
+    <Wrapper type={type} user={user}>
       <Input
         onMouseDown={(event) => {
           if (!isActiveUser()) return;
@@ -105,7 +106,7 @@ export default ({ prefix }) => {
           const n = scale[Math.floor(x * scale.length)];
           client.publish(
             prefix,
-            JSON.stringify(triggerAttack(instruments.RHODES, n, y / 2 + 0.5))
+            JSON.stringify(triggerAttack(type, n, y / 2 + 0.5))
           );
         }}
         onMouseMove={(event) => {
@@ -122,7 +123,7 @@ export default ({ prefix }) => {
               prefix,
               JSON.stringify(
                 triggerAttack(
-                  instruments.RHODES,
+                  type,
                   scale[Math.floor(x * scale.length)],
                   y / 2 + 0.5
                 )
@@ -133,10 +134,7 @@ export default ({ prefix }) => {
         onMouseUp={(event) => {
           if (!isActiveUser()) return;
           setMouseDown(false);
-          client.publish(
-            prefix,
-            JSON.stringify(triggerRelease(instruments.RHODES))
-          );
+          client.publish(prefix, JSON.stringify(triggerRelease(type)));
         }}
       ></Input>
     </Wrapper>

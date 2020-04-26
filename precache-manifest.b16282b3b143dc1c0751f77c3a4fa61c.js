@@ -1,31 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2a5e138c5dc35269d126670583946563",
+    "revision": "0ceb58bdc116ce91457c7318a7bef9d9",
     "url": "/vjam/index.html"
   },
   {
-    "revision": "9c6631a3464a402d2d59",
+    "revision": "ec58e2cc82d312a4ff22",
     "url": "/vjam/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "8e234c0ffdcccc3ff740",
-    "url": "/vjam/static/js/2.598c1c1f.chunk.js"
+    "revision": "08d407b5d4f651001c8a",
+    "url": "/vjam/static/js/2.fb8cc478.chunk.js"
   },
   {
     "revision": "3ef3ac6eb007e8e1078c659a5c07d92e",
-    "url": "/vjam/static/js/2.598c1c1f.chunk.js.LICENSE.txt"
+    "url": "/vjam/static/js/2.fb8cc478.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9c6631a3464a402d2d59",
-    "url": "/vjam/static/js/main.f9002528.chunk.js"
+    "revision": "ec58e2cc82d312a4ff22",
+    "url": "/vjam/static/js/main.63281fbb.chunk.js"
   },
   {
     "revision": "3ff68238ff968c3690ca",
     "url": "/vjam/static/js/runtime-main.773a7fc1.js"
-  },
-  {
-    "revision": "cfbbcfae5ec1922ac50fc20f0c33087c",
-    "url": "/vjam/static/media/Kawai-K5000W-Cello-C2.cfbbcfae.wav"
   },
   {
     "revision": "777ed87c6f810c0a5303761dbc6c8870",

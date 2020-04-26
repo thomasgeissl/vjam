@@ -29,18 +29,20 @@ const scale = [
 
 export default ({ active, type, prefix }) => {
   const getPosition = (state) => {
-    const touch = state.event.touches[0];
-    const target = state.event.srcElement;
-    if (touch && target) {
-      const x =
-        (touch.clientX - target.getBoundingClientRect().left) /
-        target.offsetWidth;
-      const y =
-        1 -
-        (touch.clientY - target.getBoundingClientRect().top) /
-          target.offsetHeight;
-      console.log(x, y);
-      return { x, y };
+    if (state.event.touches) {
+      const touch = state.event.touches[0];
+      const target = state.event.srcElement;
+      if (touch && target) {
+        const x =
+          (touch.clientX - target.getBoundingClientRect().left) /
+          target.offsetWidth;
+        const y =
+          1 -
+          (touch.clientY - target.getBoundingClientRect().top) /
+            target.offsetHeight;
+        console.log(x, y);
+        return { x, y };
+      }
     }
   };
   const [mouseDown, setMouseDown] = useState(false);
@@ -61,7 +63,6 @@ export default ({ active, type, prefix }) => {
       },
       onDragStart: (state) => {
         if (!active) return;
-        console.log(state.event);
         state.event.preventDefault();
         const pos = getPosition(state);
         if (pos) {

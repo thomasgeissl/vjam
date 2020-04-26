@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cf0ebff72c26ae864582470394247db7",
+    "revision": "2a5e138c5dc35269d126670583946563",
     "url": "/vjam/index.html"
   },
   {
-    "revision": "a40fcd30260f965d1fa7",
+    "revision": "9c6631a3464a402d2d59",
     "url": "/vjam/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "b3d3867cf5c155e3ce01",
-    "url": "/vjam/static/js/2.e708b918.chunk.js"
+    "revision": "8e234c0ffdcccc3ff740",
+    "url": "/vjam/static/js/2.598c1c1f.chunk.js"
   },
   {
     "revision": "3ef3ac6eb007e8e1078c659a5c07d92e",
-    "url": "/vjam/static/js/2.e708b918.chunk.js.LICENSE.txt"
+    "url": "/vjam/static/js/2.598c1c1f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a40fcd30260f965d1fa7",
-    "url": "/vjam/static/js/main.124e00a3.chunk.js"
+    "revision": "9c6631a3464a402d2d59",
+    "url": "/vjam/static/js/main.f9002528.chunk.js"
   },
   {
     "revision": "3ff68238ff968c3690ca",
     "url": "/vjam/static/js/runtime-main.773a7fc1.js"
+  },
+  {
+    "revision": "cfbbcfae5ec1922ac50fc20f0c33087c",
+    "url": "/vjam/static/media/Kawai-K5000W-Cello-C2.cfbbcfae.wav"
+  },
+  {
+    "revision": "777ed87c6f810c0a5303761dbc6c8870",
+    "url": "/vjam/static/media/Roland-GR-1-Steel-Drum-C4.777ed87c.wav"
   },
   {
     "revision": "c37d9ccf86f7e6ab776107f8fe5a82df",

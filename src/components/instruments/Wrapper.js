@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import { useSelector } from "react-redux";
 import InputPad from "../2DPad";
@@ -22,20 +23,22 @@ export default ({ type, user, children, inputPad, prefix }) => {
   const instruments = useSelector((state) => state.band.instruments);
   const inst = instruments[type];
   return (
-    <Grid item xs={12} sm={3}>
-      <User>
-        {type}: {user}
-      </User>
-      <Container active={name == inst.user}>
-        {inputPad && (
-          <InputPad
-            type={type}
-            active={user === name}
-            prefix={prefix}
-          ></InputPad>
-        )}
-        {children}
-      </Container>
-    </Grid>
+    <Box clone order={inst.user === name ? 1 : type.length}>
+      <Grid item xs={12} sm={3}>
+        <User>
+          {type}: {user}
+        </User>
+        <Container active={name == inst.user}>
+          {inputPad && (
+            <InputPad
+              type={type}
+              active={user === name}
+              prefix={prefix}
+            ></InputPad>
+          )}
+          {children}
+        </Container>
+      </Grid>
+    </Box>
   );
 };

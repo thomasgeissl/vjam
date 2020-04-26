@@ -5,10 +5,19 @@ import TextField from "@material-ui/core/TextField";
 import Tone from "tone";
 import styled from "styled-components";
 
+import pc from "../../package.json";
+const version = pc.version;
+
 const Container = styled.div`
   max-width: 768px;
   margin: auto;
   margin-top: 100px;
+`;
+const Version = styled.div`
+  position: fixed;
+  padding: 25px;
+  top: 0;
+  right: 0%;
 `;
 const Intro = styled.section``;
 const RoomChooser = styled.section`
@@ -35,6 +44,7 @@ export default () => {
   const history = useHistory();
   return (
     <Container>
+      <Version>{version}</Version>
       <Intro>
         Welcome to vjam,<br></br>a virtual jam session for everyone.
       </Intro>

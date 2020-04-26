@@ -133,7 +133,7 @@ export default () => {
             will hopefully follow soon.
           </p>
           <InstrumentChooser prefix={`vjam/${id}`}></InstrumentChooser>
-          <Grid container spacing={3}>
+          <Grid container spacing={3} justify="flex-start">
             <Juno type={instruments.JUNO} prefix={`vjam/${id}`}></Juno>
             <Rhodes type={instruments.RHODES} prefix={`vjam/${id}`}></Rhodes>
             <MPC type={instruments.MPC} prefix={`vjam/${id}`}></MPC>

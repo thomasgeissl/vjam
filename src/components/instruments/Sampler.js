@@ -1,44 +1,38 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Synth, Freeverb, PingPongDelay, MetalSynth, Master } from "tone";
+import {
+  Synth,
+  Freeverb,
+  PingPongDelay,
+  PolySynth,
+  Master,
+  Sampler,
+} from "tone";
 import Wrapper from "./Wrapper";
 
 import { getNote, getVelocity, getUser } from "../../store/reducers/band";
 
-export default ({ type, prefix }) => {
+export default ({ prefix, type, samples }) => {
   const [patched, setPatched] = useState(false);
   const [instrument, setInstrument] = useState(null);
-  const [mouseDown, setMouseDown] = useState(false);
   const note = useSelector(getNote(type));
   const velocity = useSelector(getVelocity(type));
   const user = useSelector(getUser(type));
   const name = useSelector((state) => state.system.name);
-  const isActiveUser = () => {
-    return user === name;
-  };
 
   useEffect(() => {
     if (!patched) {
-      const inst = new Synth({
-        frequency: 200,
-        envelope: {
-          attack: 0.001,
-          decay: 1.4,
-          release: 0.2,
-        },
-        harmonicity: 5.1,
-        modulationIndex: 32,
-        resonance: 4000,
-        octaves: 1.5,
-      });
-      const reverb = new Freeverb(0.4, 1000);
+      const inst = new Sampler(samples);
+      inst.volume.value = -6;
+      const reverb = new Freeverb(0.6, 5000);
       const pingPongDelay = new PingPongDelay({
-        delayTime: "8n",
-        feedback: 0.4,
-        wet: 0.5,
+        delayTime: "32n",
+        feedback: 0.7,
+        wet: 0.25,
       });
-      inst.connect(Master);
+      inst.volume.value = -24;
+      inst.connect(pingPongDelay);
       pingPongDelay.connect(reverb);
       reverb.connect(Master);
       setInstrument(inst);
@@ -46,7 +40,9 @@ export default ({ type, prefix }) => {
     }
     if (instrument) {
       if (note) {
-        instrument.triggerAttack(note, 0, velocity);
+        // TODO: check why this is not working
+        // instrument.triggerAttack(note, 0, velocity);
+        instrument.triggerAttack(note);
       } else {
         instrument.triggerRelease();
       }

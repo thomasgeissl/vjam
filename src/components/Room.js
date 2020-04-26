@@ -87,7 +87,7 @@ export default () => {
             <Grid item xs={8} sm={6}>
               Please let the others know your name. If it is not yet taken, then
               you will automatically enter the jam session. Submit by pressing
-              return. There will be a button later, do not worry.
+              return.
             </Grid>
             <Grid item xs={2} sm={3}></Grid>
 

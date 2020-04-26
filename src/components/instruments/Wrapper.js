@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import { useSelector } from "react-redux";
+import InputPad from "../2DPad";
 
 const Container = styled.div`
   height: 200px;
@@ -16,7 +17,7 @@ const User = styled.div`
   width: 100%;
   background-color: lightyellow;
 `;
-export default ({ type, user, children }) => {
+export default ({ type, user, children, inputPad, prefix }) => {
   const name = useSelector((state) => state.system.name);
   const instruments = useSelector((state) => state.band.instruments);
   const inst = instruments[type];
@@ -25,7 +26,16 @@ export default ({ type, user, children }) => {
       <User>
         {type}: {user}
       </User>
-      <Container active={name == inst.user}>{children}</Container>
+      <Container active={name == inst.user}>
+        {inputPad && (
+          <InputPad
+            type={type}
+            active={user === name}
+            prefix={prefix}
+          ></InputPad>
+        )}
+        {children}
+      </Container>
     </Grid>
   );
 };

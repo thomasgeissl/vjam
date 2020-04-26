@@ -125,13 +125,6 @@ export default () => {
             </Grid>
           </Grid>
 
-          <h2>Instruments</h2>
-          <p>
-            Instrumentes are controlled via the 2d pad, where the x axis is
-            mapped to the pitch and the y axis to the velocity. More instruments
-            and controllable effect parameters, as well as better interactions,
-            will hopefully follow soon.
-          </p>
           <InstrumentChooser prefix={`vjam/${id}`}></InstrumentChooser>
           <Grid container spacing={3} justify="flex-start">
             <Juno type={instruments.JUNO} prefix={`vjam/${id}`}></Juno>

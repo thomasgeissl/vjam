@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.ul`
   background-color: lightpink;
-  padding: 25px;
+  padding: 5px;
   list-style-type: none;
   li {
     display: inline-block;

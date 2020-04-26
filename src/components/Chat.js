@@ -10,10 +10,10 @@ import store from "../store";
 
 const Container = styled.div`
   background-color: lightcoral;
-  padding: 25px;
+  padding: 5px;
 `;
 const History = styled.ul`
-  height: 100px;
+  height: 50px;
   overflow-y: scroll;
 `;
 const Intro = styled.section``;

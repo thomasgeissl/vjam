@@ -1,18 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import client from "../mqtt";
 import { useGesture } from "react-use-gesture";
-
-import {
-  instruments,
-  triggerAttack,
-  triggerRelease,
-  getNote,
-  getVelocity,
-  getUser,
-} from "../store/reducers/band";
-
 import styled from "styled-components";
+import client from "../mqtt";
+import { triggerAttack, triggerRelease } from "../store/reducers/band";
 
 const Container = styled.div`
   width: 100%;
@@ -54,37 +44,51 @@ export default ({ active, type, prefix }) => {
     }
   };
   const [mouseDown, setMouseDown] = useState(false);
-  const bind = useGesture({
-    onDrag: (state) => {
-      if (!active) return;
-      const pos = getPosition(state);
-      if (pos) {
-        const n = scale[Math.floor(pos.x * scale.length)];
-        client.publish(
-          prefix,
-          JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
-        );
-      }
+  const myRef = useRef(null);
+  const bind = useGesture(
+    {
+      onDrag: (state) => {
+        if (!active) return;
+        state.event.preventDefault();
+        const pos = getPosition(state);
+        if (pos) {
+          const n = scale[Math.floor(pos.x * scale.length)];
+          client.publish(
+            prefix,
+            JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
+          );
+        }
+      },
+      onDragStart: (state) => {
+        if (!active) return;
+        console.log(state.event);
+        state.event.preventDefault();
+        const pos = getPosition(state);
+        if (pos) {
+          const n = scale[Math.floor(pos.x * scale.length)];
+          client.publish(
+            prefix,
+            JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
+          );
+        }
+      },
+      onDragEnd: (state) => {
+        if (!active) return;
+        state.event.preventDefault();
+        client.publish(prefix, JSON.stringify(triggerRelease(type)));
+      },
     },
-    onDragStart: (state) => {
-      if (!active) return;
-      const pos = getPosition(state);
-      if (pos) {
-        const n = scale[Math.floor(pos.x * scale.length)];
-        client.publish(
-          prefix,
-          JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
-        );
-      }
-    },
-    onDragEnd: (state) => {
-      if (!active) return;
-      client.publish(prefix, JSON.stringify(triggerRelease(type)));
-    },
-  });
+    {
+      domTarget: myRef,
+      eventOptions: { passive: false },
+    }
+  );
+  React.useEffect(bind, [bind]);
+
   return (
     <Container
-      {...bind()}
+      ref={myRef}
+      //   {...bind()}
       onMouseDown={(event) => {
         if (!active) return;
         setMouseDown(true);

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -37,19 +37,23 @@ export default ({ prefix }) => {
                     taken = true;
                   }
                 });
-                // if (event.target.value !== "NONE") {
-                client.publish(
-                  prefix,
-                  JSON.stringify(setUser(event.target.value, name))
-                );
-                // }
+                if (true) {
+                  client.publish(
+                    prefix,
+                    JSON.stringify(setUser(event.target.value, name))
+                  );
+                }
               }}
               fullWidth
             >
               <MenuItem value={"NONE"}>none</MenuItem>;
               {Object.keys(types).map((key, index) => {
                 return (
-                  <MenuItem value={types[key]} key={index}>
+                  <MenuItem
+                    // disabled={instruments[key].user !== ""}
+                    value={types[key]}
+                    key={index}
+                  >
                     {types[key]}
                   </MenuItem>
                 );

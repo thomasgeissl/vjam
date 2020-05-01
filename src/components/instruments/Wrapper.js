@@ -20,15 +20,16 @@ const User = styled.div`
 `;
 export default ({ type, user, children, inputPad, prefix }) => {
   const name = useSelector((state) => state.system.name);
+  const users = useSelector((state) => state.system.users);
   const instruments = useSelector((state) => state.band.instruments);
   const inst = instruments[type];
   return (
     <Box clone order={inst.user === name ? 1 : type.length}>
       <Grid item xs={12} sm={3}>
         <User>
-          {type}: {user}
+          {type}: {users.includes(user) ? user : ""}
         </User>
-        <Container active={name == inst.user}>
+        <Container active={name === inst.user}>
           {inputPad && (
             <InputPad
               type={type}

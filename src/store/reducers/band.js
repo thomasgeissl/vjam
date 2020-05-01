@@ -107,4 +107,11 @@ export const setUser = (instrument, user) => {
     },
   };
 };
+export const getActiveUsers = (state) => {
+  let users = [];
+  Object.keys(state.band.instruments).forEach((key) => {
+    users.push(state.band.instruments[key].user);
+  });
+  return users;
+};
 export { types, instruments };

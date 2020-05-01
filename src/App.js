@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import Home from "./components/Home";

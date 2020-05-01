@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
@@ -8,7 +8,7 @@ import { addMessage } from "../store/reducers/chat";
 
 const Container = styled.div`
   background-color: lightcoral;
-  padding: 5px;
+  padding: 10px;
 `;
 const History = styled.ul`
   height: 50px;
@@ -17,7 +17,6 @@ const History = styled.ul`
 const Name = styled.span`
   font-weight: bold;
 `;
-const Intro = styled.section``;
 export default ({ prefix }) => {
   const [text, setText] = useState("");
   const messages = useSelector((state) => state.chat.messages);
@@ -28,7 +27,6 @@ export default ({ prefix }) => {
       <TextField
         fullWidth
         value={text}
-        fullWidth
         placeholder={"something nice you wanna say to your friends"}
         onChange={(event) => setText(event.target.value)}
         onKeyPress={(event) => {

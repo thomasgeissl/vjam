@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -20,7 +20,6 @@ import store from "../store";
 import { instruments } from "../store/reducers/band";
 import client from "../mqtt";
 
-import cello_C2 from "../assets/samples/Kawai-K5000W-Cello-C2.wav";
 import steeldrum_C4 from "../assets/samples/Roland-GR-1-Steel-Drum-C4.wav";
 const celloSamples = {
   C4: steeldrum_C4,
@@ -31,53 +30,49 @@ const Intro = styled.div`
 `;
 export default () => {
   const { id } = useParams();
-  const [patched, setPatched] = useState(false);
   const [requestedName, setRequestedName] = useState("");
   const name = useSelector((state) => state.system.name);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (id && !patched) {
-      client.subscribe(`vjam/${id}`, function (err) {
-        if (!err) {
-          console.log(`subscribed to vjam/${id}`);
-        }
-      });
-      client.subscribe(`vjam/${id}/users/#`, function (err) {
-        if (!err) {
-          console.log(`subscribed to vjam/${id}/users/#`);
-        }
-      });
+    client.subscribe(`vjam/${id}`, function (err) {
+      if (!err) {
+        console.log(`subscribed to vjam/${id}`);
+      }
+    });
+    client.subscribe(`vjam/${id}/users/#`, function (err) {
+      if (!err) {
+        console.log(`subscribed to vjam/${id}/users/#`);
+      }
+    });
 
-      client.on("message", function (topic, message) {
-        if (topic === `vjam/${id}`) {
-          let action;
-          try {
-            action = JSON.parse(message.toString());
-            store.dispatch(action);
-          } catch (e) {}
+    client.on("message", function (topic, message) {
+      if (topic === `vjam/${id}`) {
+        let action;
+        try {
+          action = JSON.parse(message.toString());
+          store.dispatch(action);
+        } catch (e) {}
+      }
+      if (topic === `vjam/${id}/users/get`) {
+        const data = JSON.parse(message.toString());
+        if (data.id !== client.options.clientId) {
+          client.publish(
+            `vjam/${id}/users/set`,
+            JSON.stringify(store.getState().system.users)
+          );
         }
-        if (topic === `vjam/${id}/users/get`) {
-          const data = JSON.parse(message.toString());
-          if (data.id !== client.options.clientId) {
-            client.publish(
-              `vjam/${id}/users/set`,
-              JSON.stringify(store.getState().system.users)
-            );
-          }
-        }
-        if (topic === `vjam/${id}/users/set`) {
-          const data = JSON.parse(message.toString());
-          store.dispatch(setUsers(data));
-        }
-      });
+      }
+      if (topic === `vjam/${id}/users/set`) {
+        const data = JSON.parse(message.toString());
+        store.dispatch(setUsers(data));
+      }
+    });
 
-      setPatched(true);
-      client.publish(
-        `vjam/${id}/users/get`,
-        JSON.stringify({ id: client.options.clientId })
-      );
-    }
-  });
+    client.publish(
+      `vjam/${id}/users/get`,
+      JSON.stringify({ id: client.options.clientId })
+    );
+  }, [id]);
   return (
     <>
       {name === "" && (
@@ -118,7 +113,7 @@ export default () => {
         <>
           <Grid container>
             <Grid item xs={12}>
-              <UserList></UserList>
+              <UserList prefix={`vjam/${id}`}></UserList>
             </Grid>
             <Grid item xs={12}>
               <Chat prefix={`vjam/${id}`}></Chat>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useGesture } from "react-use-gesture";
 import styled from "styled-components";
 import client from "../mqtt";

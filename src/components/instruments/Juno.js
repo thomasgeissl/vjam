@@ -37,7 +37,7 @@ export default ({ type, prefix }) => {
   useEffect(() => {
     if (instrument) {
       if (note) {
-        instrument.triggerAttack(note, 0, velocity);
+        instrument.triggerAttack(note, undefined, velocity);
       } else {
         instrument.triggerRelease();
       }

@@ -32,7 +32,7 @@ export default ({ prefix, type, samples }) => {
       if (note) {
         // TODO: check why this is not working
         // instrument.triggerAttack(note, 0, velocity);
-        instrument.triggerAttack(note);
+        instrument.triggerAttack(note, undefined, velocity);
       } else {
         instrument.triggerRelease();
       }

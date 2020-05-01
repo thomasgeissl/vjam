@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useGesture } from "react-use-gesture";
 import styled from "styled-components";
 import client from "../mqtt";
@@ -28,10 +28,10 @@ const scale = [
 ];
 
 export default ({ active, type, prefix }) => {
-  const getPosition = (state) => {
-    if (state.event.touches) {
-      const touch = state.event.touches[0];
-      const target = state.event.srcElement;
+  const getPosition = ({ event }) => {
+    if (event.touches) {
+      const touch = event.touches[0];
+      const target = event.srcElement;
       if (touch && target) {
         const x =
           (touch.clientX - target.getBoundingClientRect().left) /
@@ -40,12 +40,22 @@ export default ({ active, type, prefix }) => {
           1 -
           (touch.clientY - target.getBoundingClientRect().top) /
             target.offsetHeight;
-        console.log(x, y);
+        return { x, y };
+      }
+    } else {
+      const target = event.srcElement;
+      if (target) {
+        const x =
+          (event.clientX - target.getBoundingClientRect().left) /
+          target.offsetWidth;
+        const y =
+          1 -
+          (event.clientY - target.getBoundingClientRect().top) /
+            target.offsetHeight;
         return { x, y };
       }
     }
   };
-  const [mouseDown, setMouseDown] = useState(false);
   const myRef = useRef(null);
   const bind = useGesture(
     {
@@ -55,10 +65,7 @@ export default ({ active, type, prefix }) => {
         const pos = getPosition(state);
         if (pos) {
           const n = scale[Math.floor(pos.x * scale.length)];
-          client.publish(
-            prefix,
-            JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
-          );
+          client.publish(prefix, JSON.stringify(triggerAttack(type, n, pos.y)));
         }
       },
       onDragStart: (state) => {
@@ -67,10 +74,7 @@ export default ({ active, type, prefix }) => {
         const pos = getPosition(state);
         if (pos) {
           const n = scale[Math.floor(pos.x * scale.length)];
-          client.publish(
-            prefix,
-            JSON.stringify(triggerAttack(type, n, pos.y / 2 + 0.5))
-          );
+          client.publish(prefix, JSON.stringify(triggerAttack(type, n, pos.y)));
         }
       },
       onDragEnd: (state) => {
@@ -86,54 +90,5 @@ export default ({ active, type, prefix }) => {
   );
   React.useEffect(bind, [bind]);
 
-  return (
-    <Container
-      ref={myRef}
-      //   {...bind()}
-      onMouseDown={(event) => {
-        if (!active) return;
-        setMouseDown(true);
-        const x =
-          (event.clientX - event.target.getBoundingClientRect().left) /
-          event.target.offsetWidth;
-        const y =
-          1 -
-          (event.clientY - event.target.getBoundingClientRect().top) /
-            event.target.offsetHeight;
-
-        const n = scale[Math.floor(x * scale.length)];
-        client.publish(
-          prefix,
-          JSON.stringify(triggerAttack(type, n, y / 2 + 0.5))
-        );
-      }}
-      onMouseMove={(event) => {
-        if (!active) return;
-        if (mouseDown) {
-          const x =
-            (event.clientX - event.target.getBoundingClientRect().left) /
-            event.target.offsetWidth;
-          const y =
-            1 -
-            (event.clientY - event.target.getBoundingClientRect().top) /
-              event.target.offsetHeight;
-          client.publish(
-            prefix,
-            JSON.stringify(
-              triggerAttack(
-                type,
-                scale[Math.floor(x * scale.length)],
-                y / 2 + 0.5
-              )
-            )
-          );
-        }
-      }}
-      onMouseUp={(event) => {
-        if (!active) return;
-        setMouseDown(false);
-        client.publish(prefix, JSON.stringify(triggerRelease(type)));
-      }}
-    ></Container>
-  );
+  return <Container ref={myRef}></Container>;
 };

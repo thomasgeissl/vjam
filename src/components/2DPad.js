@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useGesture } from "react-use-gesture";
 import styled from "styled-components";
 import client from "../mqtt";
@@ -88,7 +88,10 @@ export default ({ active, type, prefix }) => {
       eventOptions: { passive: false },
     }
   );
-  React.useEffect(bind, [bind]);
+  useEffect(bind, [bind]);
+  if (myRef.current) {
+    // console.log(myRef.current.offsetWidth);
+  }
 
   return <Container ref={myRef}></Container>;
 };

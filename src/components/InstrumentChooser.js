@@ -25,7 +25,7 @@ export default ({ prefix }) => {
   return (
     <Container>
       <Grid container>
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel>Pick an instrument</InputLabel>
             <Select

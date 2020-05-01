@@ -1,39 +1,43 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0086be9bd4e5f659d6515714edf4ae16",
+    "revision": "53a445cb2e11392f3a51a4a187531bd1",
     "url": "/vjam/index.html"
   },
   {
-    "revision": "3a7758cb9a6666420cb6",
+    "revision": "63b50efea05b4b6d1f61",
     "url": "/vjam/static/css/main.5ecd60fb.chunk.css"
   },
   {
-    "revision": "d6e296c60d76fee58087",
-    "url": "/vjam/static/js/2.7d8a4903.chunk.js"
+    "revision": "8cd8122dfc35c5fa1938",
+    "url": "/vjam/static/js/2.601537e3.chunk.js"
   },
   {
-    "revision": "3ef3ac6eb007e8e1078c659a5c07d92e",
-    "url": "/vjam/static/js/2.7d8a4903.chunk.js.LICENSE.txt"
+    "revision": "76e9ecf9c9968c290b6b3dd56d374308",
+    "url": "/vjam/static/js/2.601537e3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3a7758cb9a6666420cb6",
-    "url": "/vjam/static/js/main.b3b1b5c8.chunk.js"
+    "revision": "63b50efea05b4b6d1f61",
+    "url": "/vjam/static/js/main.edf1deb9.chunk.js"
   },
   {
     "revision": "3ff68238ff968c3690ca",
     "url": "/vjam/static/js/runtime-main.773a7fc1.js"
   },
   {
-    "revision": "cfbbcfae5ec1922ac50fc20f0c33087c",
-    "url": "/vjam/static/media/Kawai-K5000W-Cello-C2.cfbbcfae.wav"
-  },
-  {
     "revision": "777ed87c6f810c0a5303761dbc6c8870",
     "url": "/vjam/static/media/Roland-GR-1-Steel-Drum-C4.777ed87c.wav"
   },
   {
+    "revision": "711128205c082b75e923b896ad0188d3",
+    "url": "/vjam/static/media/bird.71112820.wav"
+  },
+  {
     "revision": "c37d9ccf86f7e6ab776107f8fe5a82df",
     "url": "/vjam/static/media/bonecrack.c37d9ccf.wav"
+  },
+  {
+    "revision": "ce192f939ddd8baa259792e32325576c",
+    "url": "/vjam/static/media/cat.ce192f93.wav"
   },
   {
     "revision": "23af77c20e0080d5b56ec2b4929278a2",
@@ -42,6 +46,14 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "3497fc944d89a260bc90bf48828d55ac",
     "url": "/vjam/static/media/footsteps.3497fc94.wav"
+  },
+  {
+    "revision": "394aa099ae1bbc0ca4cec39ea0cf99f3",
+    "url": "/vjam/static/media/toolfalling.394aa099.wav"
+  },
+  {
+    "revision": "6bb42376d883f46462371a90a698b4bb",
+    "url": "/vjam/static/media/waterbird.6bb42376.wav"
   },
   {
     "revision": "4a6e1b51a1196334bb380329bb683842",

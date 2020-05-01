@@ -25,7 +25,7 @@ const Trigger = ({ clickHandler }) => {
   );
 };
 
-export default ({ type, triggers, prefix }) => {
+export default ({ type, triggers, prefix, active }) => {
   return (
     <>
       <Grid container spacing={1}>
@@ -34,6 +34,7 @@ export default ({ type, triggers, prefix }) => {
             <Trigger
               key={index}
               clickHandler={() => {
+                if (!active) return;
                 // random velocity for use effect hook to detect change
                 client.publish(
                   prefix,

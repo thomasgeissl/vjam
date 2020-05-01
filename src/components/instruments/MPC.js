@@ -20,6 +20,8 @@ export default ({ type, prefix }) => {
   const note = useSelector(getNote(type));
   const velocity = useSelector(getVelocity(type));
   const user = useSelector(getUser(type));
+  const instruments = useSelector((state) => state.band.instruments);
+  const name = useSelector((state) => state.system.name);
 
   useEffect(() => {
     const inst = new Sampler({
@@ -59,6 +61,7 @@ export default ({ type, prefix }) => {
   return (
     <Wrapper type={type} user={user} inputPad={false} prefix={prefix}>
       <Triggers
+        active={user === name}
         triggers={[
           { pitch: "C2" },
           { pitch: "F2" },

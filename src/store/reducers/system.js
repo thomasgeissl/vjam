@@ -14,7 +14,6 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case types.HEARTBEAT: {
-      console.log("system heartbeat");
       let heartBeats = new Map(state.heartBeats);
       let users = [...state.users];
       heartBeats.set(action.payload.value, Date.now());

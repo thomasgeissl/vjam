@@ -28,6 +28,8 @@ and limitations under the License.
 
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 
+/*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
 /**
        *  Tone.js
        *  @author Yotam Mann

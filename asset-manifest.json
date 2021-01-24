@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/vjam/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/vjam/static/js/main.ade951a0.chunk.js",
-    "main.js.map": "/vjam/static/js/main.ade951a0.chunk.js.map",
+    "main.js": "/vjam/static/js/main.605cf667.chunk.js",
+    "main.js.map": "/vjam/static/js/main.605cf667.chunk.js.map",
     "runtime-main.js": "/vjam/static/js/runtime-main.773a7fc1.js",
     "runtime-main.js.map": "/vjam/static/js/runtime-main.773a7fc1.js.map",
-    "static/js/2.b8d28035.chunk.js": "/vjam/static/js/2.b8d28035.chunk.js",
-    "static/js/2.b8d28035.chunk.js.map": "/vjam/static/js/2.b8d28035.chunk.js.map",
+    "static/js/2.5dc36de5.chunk.js": "/vjam/static/js/2.5dc36de5.chunk.js",
+    "static/js/2.5dc36de5.chunk.js.map": "/vjam/static/js/2.5dc36de5.chunk.js.map",
     "index.html": "/vjam/index.html",
-    "precache-manifest.757854ec0ac7976684a7ae00854c4109.js": "/vjam/precache-manifest.757854ec0ac7976684a7ae00854c4109.js",
+    "precache-manifest.3235ba18cc7feab79833cbb7306c96f9.js": "/vjam/precache-manifest.3235ba18cc7feab79833cbb7306c96f9.js",
     "service-worker.js": "/vjam/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/vjam/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.b8d28035.chunk.js.LICENSE.txt": "/vjam/static/js/2.b8d28035.chunk.js.LICENSE.txt",
+    "static/js/2.5dc36de5.chunk.js.LICENSE.txt": "/vjam/static/js/2.5dc36de5.chunk.js.LICENSE.txt",
     "static/media/Roland-GR-1-Steel-Drum-C4.wav": "/vjam/static/media/Roland-GR-1-Steel-Drum-C4.777ed87c.wav",
     "static/media/bird.wav": "/vjam/static/media/bird.71112820.wav",
     "static/media/bonecrack.wav": "/vjam/static/media/bonecrack.c37d9ccf.wav",
@@ -24,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.773a7fc1.js",
-    "static/js/2.b8d28035.chunk.js",
+    "static/js/2.5dc36de5.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.ade951a0.chunk.js"
+    "static/js/main.605cf667.chunk.js"
   ]
 }
